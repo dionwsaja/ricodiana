@@ -8,11 +8,11 @@ const MusicPlayer = () => {
 
   useEffect(() => {
     soundRef.current = new Howl({
-      src: ["/assets/music/bgm.mp3"],
+      src: ["/assets/music/barasuara.mp3"],
       loop: true,
       volume: 0.5,
       autoplay: false,
-      html5: true, // penting untuk mobile / iOS
+      html5: true,
       onload: () => {
         console.log("Musik loaded");
       },

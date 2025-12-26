@@ -11,7 +11,7 @@ const fadeInUp = {
       ease: "easeOut",
     },
   },
-} satisfies import("framer-motion").Variants; // Optional: helps TS
+} satisfies import("framer-motion").Variants;
 
 export const FooterSection = () => {
   return (
@@ -47,7 +47,7 @@ export const FooterSection = () => {
           </div>
 
           <div className="text-[#F5F0E6]/70 text-sm md:text-base italic">
-            <p>Song by Nadhif Basalamah</p>
+            <p>Song by Barasuara: Terbuang dalam waktu</p>
           </div>
         </motion.div>
       </div>

@@ -103,12 +103,12 @@ export const Love = () => {
                   </span>
                 </h3>
                 <p className="text-[#F5F0E6] text-lg font-light mb-2">
-                  2022 (Lamaran)
+                  2025 (Lamaran)
                 </p>
                 <p className="text-[#F5F0E6]/90 text-base">
                   Setelah 6 tahun mengenal dekat kami berdua meyakini mampu
                   melangkah ke jenjang yang lebih serius, pada tanggal 22 Juni
-                  2022 kami resmi bertunangan.
+                  2025 kami resmi bertunangan.
                 </p>
               </div>
             </div>

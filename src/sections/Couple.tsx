@@ -83,7 +83,7 @@ export const Couple = () => {
             </div>
 
             <h3 className="font-great-vibes text-3xl md:text-4xl text-[#C5A065] mb-3">
-              Muhammad Rico Listiawan
+              Mohammad Rico Listiawan
             </h3>
             <p className="text-[#F5F0E6] text-lg font-light mb-2">
               Putra Pertama Bpk. Tulistiono & Ibu Tutik Handayani
