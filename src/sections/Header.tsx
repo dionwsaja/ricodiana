@@ -1,4 +1,4 @@
-import gambarHeader from "../assets/images/7.JPG";
+import gambarHeader from "../assets/images/7.jpg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
