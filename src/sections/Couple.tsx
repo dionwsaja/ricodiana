@@ -93,13 +93,13 @@ export const Couple = () => {
             </p>
 
             <a
-              href="https://instagram.com/rico_username"
+              href="https://www.instagram.com/rich.co17?igsh=MTkzY3ZrMGZua3U3Zw=="
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#C5A065] hover:text-[#d4b27a] transition-colors"
             >
               <FaInstagram size={24} />
-              @rico
+              Instagram Rico
             </a>
           </div>
 
@@ -124,13 +124,13 @@ export const Couple = () => {
             </p>
 
             <a
-              href="https://instagram.com/diana_username"
+              href="https://www.instagram.com/bubbleyies.06?igsh=MXcybzdtcmV0Yzl5eg=="
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#C5A065] hover:text-[#d4b27a] transition-colors"
             >
               <FaInstagram size={24} />
-              @diana
+              Instagram Diana
             </a>
           </div>
 
