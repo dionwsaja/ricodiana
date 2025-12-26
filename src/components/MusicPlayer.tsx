@@ -7,40 +7,19 @@ const MusicPlayer = () => {
   const soundRef = useRef<Howl | null>(null);
 
   useEffect(() => {
-    try {
-      console.log("Memulai inisialisasi Howl...");
-      soundRef.current = new Howl({
-        src: ["/assets/music/bgm.mp3"],
-        loop: true,
-        volume: 0.5,
-        autoplay: false,
-        onload: () => console.log("Musik berhasil dimuat"),
-        onloaderror: () => console.error("Gagal load musik"),
-        onend: () => console.log("Lagu selesai, repeat karena loop: true"),
-      });
-
-      // Coba autoplay
-      // Blok play di useEffect
-      const playResult = soundRef.current?.play();
-      if (playResult !== undefined) {
-        if (typeof playResult === "number") {
-          setIsPlaying(true);
-        } else {
-          // TS sekarang tahu ini Promise
-          (playResult as Promise<void>)
-            .then(() => {
-              console.log("Musik mulai play");
-              setIsPlaying(true);
-            })
-            .catch((err: unknown) => {
-              console.warn("Autoplay diblok browser:", err);
-              setIsPlaying(false);
-            });
-        }
-      }
-    } catch (err) {
-      console.error("Error saat inisialisasi musik:", err);
-    }
+    soundRef.current = new Howl({
+      src: ["/assets/music/bgm.mp3"],
+      loop: true,
+      volume: 0.5,
+      autoplay: false,
+      html5: true, // penting untuk mobile / iOS
+      onload: () => {
+        console.log("Musik loaded");
+      },
+      onloaderror: (_: number, err: string) => {
+        console.error("Load error:", err);
+      },
+    });
 
     return () => {
       soundRef.current?.unload();
@@ -48,13 +27,14 @@ const MusicPlayer = () => {
   }, []);
 
   const togglePlay = () => {
-    if (soundRef.current) {
-      if (isPlaying) {
-        soundRef.current.pause();
-      } else {
-        soundRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (!soundRef.current) return;
+
+    if (isPlaying) {
+      soundRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      soundRef.current.play();
+      setIsPlaying(true);
     }
   };
 
@@ -62,20 +42,19 @@ const MusicPlayer = () => {
     <div className="fixed bottom-6 right-6 z-50">
       <button
         onClick={togglePlay}
-        className="relative w-16 h-16 md:w-20 md:h-20 bg-[#1B263B]/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border-2 border-[#C5A065]/50 hover:border-[#C5A065] transition-all duration-500 group"
         aria-label={isPlaying ? "Pause Musik" : "Play Musik"}
+        className="relative w-16 h-16 md:w-20 md:h-20 bg-[#1B263B]/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border-2 border-[#C5A065]/50 hover:border-[#C5A065] transition-all duration-500 group"
       >
         {isPlaying ? (
-          <FaCirclePause className="text-[#C5A065] text-4xl md:text-5xl group-hover:scale-110 transition-transform z-10" />
+          <FaCirclePause className="text-[#C5A065] text-4xl md:text-5xl z-10 group-hover:scale-110 transition-transform" />
         ) : (
-          <FaCirclePlay className="text-[#C5A065] text-4xl md:text-5xl group-hover:scale-110 transition-transform z-10" />
+          <FaCirclePlay className="text-[#C5A065] text-4xl md:text-5xl z-10 group-hover:scale-110 transition-transform" />
         )}
 
-        {/* Piringan berputar */}
+        {/* Piringan */}
         <div
-          className={`absolute inset-0 rounded-full border-4 border-[#C5A065]/30 animate-spin ${
-            isPlaying ? "duration-[8000ms]" : "duration-[12000ms]"
-          }`}
+          className={`absolute inset-0 rounded-full border-4 border-[#C5A065]/30
+            ${isPlaying ? "spin-force" : "spin-force-slow spin-pause"}`}
         >
           <div className="absolute inset-2 rounded-full border border-[#C5A065]/50" />
         </div>

@@ -17,3 +17,24 @@
 .font-great-vibes {
   font-family: "Great Vibes", cursive;
 }
+
+@keyframes spin-force {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-force {
+  animation: spin-force 8s linear infinite;
+}
+
+.spin-force-slow {
+  animation: spin-force 12s linear infinite;
+}
+
+.spin-pause {
+  animation-play-state: paused;
+}

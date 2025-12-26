@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect } from "react";
+import { FaInstagram } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,15 +37,12 @@ export const Couple = () => {
     });
 
     tl.fromTo(".bg-overlay", { opacity: 0 }, { opacity: 1, duration: 1.5 });
-
     tl.from(".couple-title", { y: 50, opacity: 0, duration: 1 }, "-=1");
-
     tl.from(
       ".groom-card, .bride-card",
       { y: 60, opacity: 0, duration: 1.2, stagger: 0.4 },
       "-=0.8"
     );
-
     tl.from(
       ".photo-ring",
       {
@@ -76,14 +74,12 @@ export const Couple = () => {
         <div className="flex relative flex-col md:flex-row justify-center items-center gap-12 md:gap-24">
           {/* Groom */}
           <div className="groom-card text-center">
-            <div className="relative mx-auto mb-6">
-              <div className="photo-ring w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#C5A065]/50 mx-auto shadow-xl">
-                <img
-                  src="/images/rico.png"
-                  alt="Muhammad Rico Listiawan"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="photo-ring w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#C5A065]/50 mx-auto shadow-xl mb-6">
+              <img
+                src="/images/rico.png"
+                alt="Muhammad Rico Listiawan"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <h3 className="font-great-vibes text-3xl md:text-4xl text-[#C5A065] mb-3">
@@ -102,31 +98,19 @@ export const Couple = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#C5A065] hover:text-[#d4b27a] transition-colors"
             >
-              {/* IG icon */}
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
-                <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324z" />
-                <circle cx="18.406" cy="5.594" r="1.44" />
-              </svg>
-              @ig nya mas rico
+              <FaInstagram size={24} />
+              @rico
             </a>
           </div>
 
           {/* Bride */}
           <div className="bride-card text-center">
-            <div className="relative mx-auto mb-6">
-              <div className="photo-ring w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#C5A065]/50 mx-auto shadow-xl">
-                <img
-                  src="/images/diana.png"
-                  alt="Diana Agustin"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="photo-ring w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#C5A065]/50 mx-auto shadow-xl mb-6">
+              <img
+                src="/images/diana.png"
+                alt="Diana Agustin"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <h3 className="font-great-vibes text-3xl md:text-4xl text-[#C5A065] mb-3">
@@ -145,17 +129,8 @@ export const Couple = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#C5A065] hover:text-[#d4b27a] transition-colors"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
-                <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324z" />
-                <circle cx="18.406" cy="5.594" r="1.44" />
-              </svg>
-              @ig mbak diana
+              <FaInstagram size={24} />
+              @diana
             </a>
           </div>
 

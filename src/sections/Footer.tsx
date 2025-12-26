@@ -47,7 +47,7 @@ export const FooterSection = () => {
           </div>
 
           <div className="text-[#F5F0E6]/70 text-sm md:text-base italic">
-            <p>Song by Barasuara</p>
+            <p>Song by Nadhif Basalamah</p>
           </div>
         </motion.div>
       </div>
