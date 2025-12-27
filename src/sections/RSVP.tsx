@@ -62,7 +62,7 @@ export const RSVPSection = () => {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwD-S-FSpi4mDjpnSPztYZ6bkbAWiPiMs8MADGovzks3BBelGX4IgUoLv4rQ0azLwCn_w/exec",
+        "https://script.google.com/macros/s/AKfycbz4tOfn6fgb4RyMpp6vEPKBZEbfnGRk7C-XCj9LwpnrSH6FsvzF8WSheiP6VJ9hvrcIOw/exec",
         {
           method: "POST",
 
