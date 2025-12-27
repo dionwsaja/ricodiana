@@ -14,13 +14,15 @@ const fadeInUp: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.75,
-      ease: [0.16, 1, 0.3, 1], // easeOut (TS-safe)
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
 
 type FormData = {
   name: string;
+  phone: string;
+  attendance: string;
   guests: string;
   message: string;
 };
@@ -28,6 +30,8 @@ type FormData = {
 export const RSVPSection = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
+    phone: "",
+    attendance: "",
     guests: "",
     message: "",
   });
@@ -43,7 +47,7 @@ export const RSVPSection = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("Mengirim...");
 
@@ -52,16 +56,20 @@ export const RSVPSection = () => {
         "https://script.google.com/macros/s/AKfycbw3HumcO3hDCo0v71DWWNYQmASAUZrtfHUEIj1thrFlx2wgXFR44sHJL3mmrqx7EUDN5w/exec",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         }
       );
 
       if (response.ok) {
         setStatus("Terima kasih! Konfirmasi berhasil dikirim.");
-        setFormData({ name: "", guests: "", message: "" });
+        setFormData({
+          name: "",
+          phone: "",
+          attendance: "",
+          guests: "",
+          message: "",
+        });
       } else {
         setStatus("Gagal mengirim. Coba lagi.");
       }
@@ -114,12 +122,47 @@ export const RSVPSection = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065] transition-all"
+                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065]"
                 placeholder="Masukkan nama lengkap Anda"
               />
             </div>
 
-            {/* Jumlah Tamu */}
+            {/* Phone */}
+            <div className="text-left">
+              <label className="block text-[#C5A065] text-lg font-medium mb-3">
+                Nomor HP / WhatsApp
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065]"
+                placeholder="08xx xxxx xxxx"
+              />
+            </div>
+
+            {/* Attendance */}
+            <div className="text-left">
+              <label className="block text-[#C5A065] text-lg font-medium mb-3">
+                Apakah Anda akan hadir?
+              </label>
+              <select
+                name="attendance"
+                value={formData.attendance}
+                onChange={handleChange}
+                required
+                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065]"
+              >
+                <option value="">Pilih</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+                <option value="Mungkin Hadir">Mungkin Hadir</option>
+              </select>
+            </div>
+
+            {/* Guests */}
             <div className="text-left">
               <label className="block text-[#C5A065] text-lg font-medium mb-3">
                 Jumlah Tamu (termasuk diri sendiri)
@@ -129,10 +172,10 @@ export const RSVPSection = () => {
                 value={formData.guests}
                 onChange={handleChange}
                 required
-                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065] transition-all"
+                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065]"
               >
                 <option value="">Pilih jumlah tamu</option>
-                <option value="1">1 Orang (Hanya Saya)</option>
+                <option value="1">1 Orang</option>
                 <option value="2">2 Orang</option>
                 <option value="3">3 Orang</option>
                 <option value="4">4 Orang</option>
@@ -140,7 +183,7 @@ export const RSVPSection = () => {
               </select>
             </div>
 
-            {/* Ucapan */}
+            {/* Message */}
             <div className="text-left">
               <label className="block text-[#C5A065] text-lg font-medium mb-3">
                 Ucapan & Doa (Opsional)
@@ -150,7 +193,7 @@ export const RSVPSection = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065] transition-all"
+                className="w-full px-6 py-4 bg-[#0d1a2e]/50 border border-[#C5A065]/30 rounded-xl text-[#F5F0E6] focus:outline-none focus:border-[#C5A065]"
                 placeholder="Tuliskan ucapan atau doa Anda..."
               />
             </div>
@@ -166,10 +209,6 @@ export const RSVPSection = () => {
           </form>
 
           {status && <p className="text-[#C5A065] mt-6 text-lg">{status}</p>}
-
-          <p className="text-[#F5F0E6]/70 text-sm mt-8 italic">
-            Konfirmasi paling lambat 10 Januari 2026. Terima kasih.
-          </p>
         </motion.div>
       </div>
     </section>
