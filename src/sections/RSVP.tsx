@@ -51,13 +51,22 @@ export const RSVPSection = () => {
     e.preventDefault();
     setStatus("Mengirim...");
 
+    // Buat object FormData
+    const formBody = new FormData();
+    // Masukkan data state ke FormData
+    formBody.append("name", formData.name);
+    formBody.append("phone", formData.phone);
+    formBody.append("attendance", formData.attendance);
+    formBody.append("guests", formData.guests);
+    formBody.append("message", formData.message);
+
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbw3HumcO3hDCo0v71DWWNYQmASAUZrtfHUEIj1thrFlx2wgXFR44sHJL3mmrqx7EUDN5w/exec",
+        "https://script.google.com/macros/s/AKfycbwD-S-FSpi4mDjpnSPztYZ6bkbAWiPiMs8MADGovzks3BBelGX4IgUoLv4rQ0azLwCn_w/exec",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+
+          body: formBody,
         }
       );
 
@@ -73,8 +82,9 @@ export const RSVPSection = () => {
       } else {
         setStatus("Gagal mengirim. Coba lagi.");
       }
-    } catch {
-      setStatus("Terjadi kesalahan. Coba lagi.");
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("Terjadi kesalahan koneksi.");
     }
   };
 
