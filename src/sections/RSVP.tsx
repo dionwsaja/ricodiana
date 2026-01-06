@@ -62,7 +62,7 @@ export const RSVPSection = () => {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbz4tOfn6fgb4RyMpp6vEPKBZEbfnGRk7C-XCj9LwpnrSH6FsvzF8WSheiP6VJ9hvrcIOw/exec",
+        "https://script.google.com/macros/s/AKfycbw6oWUYivCutEQWVjJ_GKFTerh60bbwcVkvlcik-WIvgr9wNDLqab3xumCcgtQ9Ebm6Hg/exec",
         {
           method: "POST",
 
@@ -121,7 +121,6 @@ export const RSVPSection = () => {
           className="bg-[#1B263B]/60 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-[#C5A065]/30 shadow-2xl"
         >
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Nama */}
             <div className="text-left">
               <label className="block text-[#C5A065] text-lg font-medium mb-3">
                 Nama Lengkap
@@ -137,7 +136,6 @@ export const RSVPSection = () => {
               />
             </div>
 
-            {/* Phone */}
             <div className="text-left">
               <label className="block text-[#C5A065] text-lg font-medium mb-3">
                 Nomor HP / WhatsApp
@@ -153,7 +151,6 @@ export const RSVPSection = () => {
               />
             </div>
 
-            {/* Attendance */}
             <div className="text-left">
               <label className="block text-[#C5A065] text-lg font-medium mb-3">
                 Apakah Anda akan hadir?

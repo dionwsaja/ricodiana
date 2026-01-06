@@ -1,141 +1,114 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-import { useEffect } from "react";
+import { FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const EventSection = () => {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 1,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   useGSAP(() => {
-    const tl = gsap.timeline({
+    gsap.from(".event-card", {
       scrollTrigger: {
         trigger: "#event",
-        start: "top 80%",
+        start: "top 70%",
         toggleActions: "play none none none",
       },
+      y: 100,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power4.out",
     });
-
-    tl.fromTo(
-      ".bg-image",
-      { scale: 1.05, opacity: 0 },
-      { scale: 1, opacity: 0.4, duration: 2 }
-    );
-
-    tl.to(".overlay", { opacity: 1, duration: 1.5 }, "-=1.5");
-
-    tl.from(".event-title", { y: 50, opacity: 0, duration: 1 }, "-=1");
-
-    tl.from(
-      ".akad-card, .resepsi-card, .place-card",
-      { y: 60, opacity: 0, duration: 1.2, stagger: 0.3 },
-      "-=0.8"
-    );
-
-    tl.from(
-      ".divider-line",
-      { width: 0, duration: 1.5, ease: "power3.out" },
-      "-=1"
-    );
   }, []);
+
+  const eventData = [
+    {
+      title: "Akad Nikah",
+      date: "17 Januari 2026",
+      time: "08:00 - 09:00 WIB",
+      label: "Mempelai Wanita",
+      address:
+        "Kediaman mempelai Wanita, Rt 05 Rw 02, Sungelebak Karanggeneng, Lamongan",
+    },
+    {
+      title: "Resepsi",
+      date: "17 Januari 2026",
+      time: "10:00 - Selesai",
+      label: "Mempelai Wanita",
+      address:
+        "Kediaman mempelai Wanita, Rt 05 Rw 02, Sungelebak Karanggeneng, Lamongan",
+    },
+  ];
 
   return (
     <section
       id="event"
-      className="relative min-h-screen flex items-center justify-center py-20 px-6 md:px-12 overflow-hidden"
+      className="relative min-h-screen py-24 px-4 md:px-10 flex flex-col items-center justify-center overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #1B263B 0%, #0d1a2e 100%)",
+      }}
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/3.jpg"
-          alt="Event Background"
-          className="bg-image w-full h-full object-cover opacity-0"
-        />
-        <div className="overlay absolute inset-0 bg-white/40 backdrop-blur-sm" />
-      </div>
+      <h2 className="font-great-vibes text-5xl md:text-7xl text-[#C5A065] mb-20 text-center">
+        The Wedding Event
+      </h2>
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <h2 className="event-title font-great-vibes text-5xl md:text-6xl text-[#C5A065] mb-16 drop-shadow-lg">
-          Save the Date
-        </h2>
-
-        <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 relative">
-          <div className="divider-line hidden md:block absolute top-0 bottom-0 left-1/2 w-0 h-full border-l-2 border-[#C5A065]/70 transform -translate-x-1/2" />
-
-          <div className="akad-card bg-[#1B263B]/60 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-[#C5A065]/50 shadow-lg text-center md:text-right w-full md:w-1/2">
-            <h3 className="font-great-vibes text-4xl text-[#C5A065] mb-4">
-              Akad Nikah
-            </h3>
-            <p className="text-[#F5F0E6] text-2xl font-light">
-              08:00 - 09:00 WIB
-            </p>
-          </div>
-
-          <div className="resepsi-card bg-[#1B263B]/60 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-[#C5A065]/50 shadow-lg text-center md:text-left w-full md:w-1/2">
-            <h3 className="font-great-vibes text-4xl text-[#C5A065] mb-4">
-              Resepsi
-            </h3>
-            <p className="text-[#F5F0E6] text-2xl font-light">
-              10:00 - Selesai
-            </p>
-          </div>
-        </div>
-
-        <div className="place-card bg-[#1B263B]/60 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-[#C5A065]/50 shadow-lg mt-12 max-w-3xl mx-auto">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.7421739203833!2d112.34347869999999!3d-7.0395575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77ee04ed63d91d%3A0x4d586991e7cf0bf9!2sJl.%20Kadet%20Suwoko%20No.114%2C%20Sungelebak%2C%20Kec.%20Karang%20Geneng%2C%20Kabupaten%20Lamongan%2C%20Jawa%20Timur%2062254!5e0!3m2!1sid!2sid!4v1766698934555!5m2!1sid!2sid"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="rounded-lg"
-          />
-
-          <h3 className="font-great-vibes text-3xl text-[#C5A065] my-6">
-            Tempat
-          </h3>
-          <p className="text-[#F5F0E6] text-xl font-light mb-4">
-            Kediaman mempelai Wanita, Rt 05 Rw 02, Sungelebak Karanggeneng,
-            Lamongan
-          </p>
-          <a
-            href="https://maps.app.goo.gl/mAKyYD9p1BjwrmGR9"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-[#C5A065] text-white font-medium rounded-full text-lg mt-4 hover:bg-[#d4b27a] transition-colors shadow-lg"
+      <div className="flex justify-center w-full max-w-6xl">
+        {eventData.map((event, index) => (
+          <div
+            key={index}
+            className="event-card w-full max-w-lg md:max-w-xl m-4"
           >
-            Buka Maps
-          </a>
-        </div>
+            <div className="bg-gold/80 p-3 md:p-5 rounded-t-[200px] rounded-b-3xl shadow-2xl h-full transform hover:scale-[1.02] transition-transform duration-500">
+              <div
+                className="bg-[#F5F0E6] rounded-t-[200px] rounded-b-2xl p-8 md:p-14 text-center flex flex-col items-center justify-between min-h-[650px] md:min-h-[700px] relative"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(245, 240, 230, 0.85), rgba(245, 240, 230, 0.85)), url('/images/3.jpg')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="flex flex-col items-center">
+                  <FaHeart className="text-gold/80 text-4xl mb-6 animate-pulse" />
+                  <h3 className="font-great-vibes text-5xl md:text-6xl text-gold/80 mb-6 leading-tight">
+                    {event.title}
+                  </h3>
+                  <div className="w-24 h-[1.5px] bg-gold/80/40 mb-8" />
+                </div>
 
-        <p className="text-[#C5A065] text-3xl font-light tracking-widest mt-12">
-          17 . 01 . 2026
-        </p>
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <p className="text-gold/80 text-2xl font-bold uppercase tracking-wider">
+                      {event.date}
+                    </p>
+                    <p className="text-gold/80 text-xl">Pukul : {event.time}</p>
+                  </div>
 
-        <button className="mt-6 px-8 py-4 bg-[#C5A065]/80 text-white rounded-full text-lg hover:bg-[#C5A065] transition-colors">
-          Add to Calendar
-        </button>
+                  <FaMapMarkerAlt className="text-gold/80 text-4xl mx-auto" />
+
+                  <div className="space-y-2">
+                    <p className="text-gold/80 font-bold text-xl">
+                      {event.label}
+                    </p>
+                    <p className="text-gold/80/80 text-lg leading-relaxed max-w-[280px] mx-auto italic">
+                      {event.address}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <a
+                    href="https://maps.app.goo.gl/zumwhfNauAP9r9sQ6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 px-10 py-4 bg-gold/80 text-white rounded-full transition-all shadow-lg hover:shadow-2xl active:scale-95"
+                  >
+                    <FaMapMarkerAlt />
+                    <span>Open Map</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

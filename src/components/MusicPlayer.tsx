@@ -8,7 +8,7 @@ const MusicPlayer = () => {
 
   useEffect(() => {
     soundRef.current = new Howl({
-      src: ["/assets/music/barasuara.mp3"],
+      src: ["/assets/music/lagu.mp3"],
       loop: true,
       volume: 0.5,
       autoplay: false,
